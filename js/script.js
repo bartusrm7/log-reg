@@ -11,12 +11,16 @@ const loginWindow = document.querySelector(".login-label");
 const registerWindow = document.querySelector(".register-label");
 const changeLoginOrRegisterBtn = document.querySelectorAll(".main__change-log-reg");
 
+const afterLoginAccountWindow = document.querySelector(".main__after-login-box");
+const afterRegisterAccountWindow = document.querySelector(".main__after-register-box");
+const loginNameAccountAfterLog = document.querySelector(".main__after-login-name-account");
+const registerNameAccountAfterReg = document.querySelector(".main__after-register-name-account");
+
 const changeLoginOrRegisterWindow = () => {
 	changeLoginOrRegisterBtn.forEach(change => {
 		change.addEventListener("click", () => {
 			windowLoginOrRegister.forEach(window => {
 				window.classList.toggle("display-log-reg-window");
-				console.log(window);
 			});
 		});
 	});
@@ -24,10 +28,8 @@ const changeLoginOrRegisterWindow = () => {
 changeLoginOrRegisterWindow();
 
 const loginUser = () => {
-	acceptLoginBtn.addEventListener('click', () => {
-		
-	})
-}
+	acceptLoginBtn.addEventListener("click", () => {});
+};
 
 const registerAccount = () => {
 	acceptRegisterBtn.addEventListener("click", () => {
@@ -36,6 +38,7 @@ const registerAccount = () => {
 			password: registerPasswordInput.value,
 			email: registerEmailInput.value,
 		};
+		registerNameAccountAfterReg.textContent = userData.name;
 
 		fetch("http://127.0.0.1:7777/register", {
 			method: "POST",
@@ -47,20 +50,9 @@ const registerAccount = () => {
 		registerNameInput.value = "";
 		registerPasswordInput.value = "";
 		registerEmailInput.value = "";
+
+		registerWindow.classList.add("display-log-reg-window");
+		afterRegisterAccountWindow.classList.remove("display-log-reg-window");
 	});
 };
 registerAccount();
-
-// const acceptLoginFromUser = () => {
-// 	acceptLoginBtn.addEventListener("click", () => {
-// 		loginWindow.classList.add("display-log-reg-window");
-// 	});
-// };
-// acceptLoginFromUser();
-
-// const acceptRegisterFromUser = () => {
-// 	acceptRegisterBtn.addEventListener("click", () => {
-// 		registerWindow.classList.add("display-log-reg-window");
-// 	});
-// };
-// acceptRegisterFromUser();
