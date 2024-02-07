@@ -36,12 +36,6 @@ body {
 			background-color: black;
 		}
 	}
-	// .login-label {
-	// 	display: block;
-	// }
-	// .register-label {
-	// 	display: none;
-	// }
 	&__login-data {
 		display: flex;
 	}
@@ -75,7 +69,7 @@ body {
 			background-color: white;
 			text-transform: uppercase;
 			font-weight: bold;
-			transition: 0.3s;
+			transition: 0.5s;
 			cursor: pointer;
 			&:hover {
 				background-color: black;
@@ -86,10 +80,9 @@ body {
 			background-color: black;
 		}
 	}
-
-	&__input-label{
+	&__input-label {
 		position: relative;
-		span{
+		span {
 			position: absolute;
 			top: -5px;
 			right: 0;
@@ -109,6 +102,32 @@ body {
 		font-size: 1rem;
 		font-weight: bold;
 		cursor: pointer;
+	}
+	&__after-register-name-account {
+		font-weight: bold;
+		color: rgb(235, 130, 235);
+	}
+	.after-log-reg-discription {
+		margin: 5em 3em;
+		text-align: center;
+	}
+	.go-to-login-window {
+		display: flex;
+		justify-content: center;
+	}
+	.go-to-login-window-btn {
+		background-color: inherit;
+		color: white;
+		text-transform: uppercase;
+		font-size: 1rem;
+		font-weight: bold;
+		border: none;
+		outline: none;
+		cursor: pointer;
+		hr {
+			margin: 5px auto;
+			width: 50%;
+		}
 	}
 }
 
