@@ -15,6 +15,7 @@ const afterLoginAccountWindow = document.querySelector(".main__after-login-box")
 const afterRegisterAccountWindow = document.querySelector(".main__after-register-box");
 const loginNameAccountAfterLog = document.querySelector(".main__after-login-name-account");
 const registerNameAccountAfterReg = document.querySelector(".main__after-register-name-account");
+const goToLoginWindowBtn = document.querySelector(".go-to-login-window-btn");
 
 const changeLoginOrRegisterWindow = () => {
 	changeLoginOrRegisterBtn.forEach(change => {
@@ -56,3 +57,12 @@ const registerAccount = () => {
 	});
 };
 registerAccount();
+
+const goToLoginWindowFromReg = () => {
+	goToLoginWindowBtn.addEventListener("click", () => {
+		registerWindow.classList.add("display-log-reg-window");
+		loginWindow.classList.remove("display-log-reg-window");
+		afterRegisterAccountWindow.classList.add("display-log-reg-window");
+	});
+};
+goToLoginWindowFromReg();
