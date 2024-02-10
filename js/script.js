@@ -14,8 +14,12 @@ const changeLoginOrRegisterBtn = document.querySelectorAll(".main__change-log-re
 const afterLoginAccountWindow = document.querySelector(".main__after-login-box");
 const afterRegisterAccountWindow = document.querySelector(".main__after-register-box");
 const loginNameAccountAfterLog = document.querySelector(".main__after-login-name-account");
-const registerNameAccountAfterReg = document.querySelector(".main__after-register-name-account");
+const registerNameAccountAfterReg = document.querySelectorAll(".main__after-register-name-account");
+const afterRegisterFieldDiscription = document.querySelector(".main__after-register-discription");
 const goToLoginWindowBtn = document.querySelector(".go-to-login-window-btn");
+
+const loginUserWindow = document.querySelector(".main__login-user");
+const logOutBtn = document.querySelector(".logout-btn");
 
 const changeLoginOrRegisterWindow = () => {
 	changeLoginOrRegisterBtn.forEach(change => {
@@ -29,7 +33,28 @@ const changeLoginOrRegisterWindow = () => {
 changeLoginOrRegisterWindow();
 
 const loginUser = () => {
-	acceptLoginBtn.addEventListener("click", () => {});
+	acceptLoginBtn.addEventListener("click", () => {
+		const loginData = {
+			name: loginNameInput.value,
+			password: loginPasswordInput.value,
+		};
+		fetch("http://127.0.0.1:7777/login", {
+			method: "POST",
+			body: JSON.stringify(loginData),
+			headers: {
+				"Content-type": "application/json",
+			},
+		});
+		loginWindow.classList.add("display-log-reg-window");
+		afterLoginAccountWindow.classList.remove("display-log-reg-window");
+	});
+	loginNameInput.value = "";
+	loginPasswordInput.value = "";
+};
+loginUser();
+
+const logoutAfterLoginUser = () => {
+	logOutBtn.addEventListener("click");
 };
 
 const registerAccount = () => {
@@ -39,7 +64,9 @@ const registerAccount = () => {
 			password: registerPasswordInput.value,
 			email: registerEmailInput.value,
 		};
-		registerNameAccountAfterReg.textContent = userData.name;
+		registerNameAccountAfterReg.forEach(register => {
+			register.textContent = userData.name;
+		});
 
 		fetch("http://127.0.0.1:7777/register", {
 			method: "POST",
@@ -47,7 +74,15 @@ const registerAccount = () => {
 			headers: {
 				"Content-type": "application/json",
 			},
+		}).then(res => {
+			if (res.status === 400) {
+				afterRegisterFieldDiscription.textContent = `Sorry, the user ${userData.name} is already existing! Try again!`;
+			} else if (res.status === 200) {
+				afterRegisterFieldDiscription.textContent = `Thank you ${userData.name} for register your account! Now you can log
+		below!`;
+			}
 		});
+
 		registerNameInput.value = "";
 		registerPasswordInput.value = "";
 		registerEmailInput.value = "";

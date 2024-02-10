@@ -148,7 +148,8 @@ body {
   text-align: center;
 }
 
-.main .go-to-login-window {
+.main .go-to-login-window,
+.main .logout {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -157,18 +158,19 @@ body {
           justify-content: center;
 }
 
-.main .go-to-login-window-btn {
-  background-color: inherit;
-  color: white;
+.main .go-to-login-window-btn,
+.main .logout-btn {
+  padding: 0.5em 2.5em;
   text-transform: uppercase;
-  font-size: 1rem;
   font-weight: bold;
+  border-radius: 5px;
   border: none;
   outline: none;
   cursor: pointer;
 }
 
-.main .go-to-login-window-btn hr {
+.main .go-to-login-window-btn hr,
+.main .logout-btn hr {
   margin: 5px auto;
   width: 50%;
 }

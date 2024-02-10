@@ -7,30 +7,39 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-	console.log(req);
 	res.status(200).end();
 });
 
 app.get("/register", (req, res) => {
-	console.log(req);
 	res.status(200).json({ userData });
 });
 
 app.post("/register", (req, res) => {
-	userData.push(req.body);
-	res.status(200).end();
+	const { name, email } = req.body;
+	const userExist = userData.map(user => user.name === name || user.email === email).includes(true);
+
+	if (userExist) {
+		res.status(400).json({ message: "user is already existing" });
+		console.log("wrong data, try again");
+	} else {
+		userData.push(req.body);
+		res.status(200).json({ message: "registration succesfull" });
+		console.log(req.body);
+	}
 });
 
 app.get("/login", (req, res) => {});
 
 app.post("/login", (req, res) => {
-	const { email, password } = req.body;
-	const user = userData.find(user => user.email === email && user.password === password);
+	const { name, password } = req.body;
+	const user = userData.map(user => user.name === name && user.password === password).includes(true);
 
 	if (user) {
-		res.status(200).json({ message: "Login successful" });
+		res.status(200).json({ message: "login successful" });
+		console.log(req.body);
 	} else {
-		res.status(401).json({ message: "Invalid credentials" });
+		res.status(401).json({ message: "login wrong" });
+		console.log("wrong data, try again");
 	}
 });
 
