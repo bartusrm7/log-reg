@@ -18,7 +18,7 @@ body {
 	&__container {
 		position: relative;
 		width: 240px;
-		min-height: 450px;
+		min-height: 500px;
 		background-color: purple;
 		border-radius: 10px;
 	}
@@ -64,7 +64,7 @@ body {
 			border: none;
 		}
 		button {
-			margin: 3em 0;
+			margin: 1.75em 0;
 			padding: 0.5em 1.5em;
 			background-color: white;
 			text-transform: uppercase;
@@ -87,6 +87,10 @@ body {
 			top: -5px;
 			right: 0;
 		}
+	}
+	.log-reg-position-relative {
+		position: relative;
+		padding-top: 2em;
 	}
 	&__change-window {
 		position: absolute;
@@ -124,11 +128,22 @@ body {
 		border-radius: 5px;
 		border: none;
 		outline: none;
+		transition: 0.5s;
 		cursor: pointer;
+		&:hover {
+			background-color: black;
+			color: white;
+		}
 		hr {
 			margin: 5px auto;
 			width: 50%;
 		}
+	}
+	.empty-input-field {
+		padding: 0 3em;
+		color: red;
+		font-weight: bold;
+		text-align: center;
 	}
 }
 
@@ -141,7 +156,7 @@ body {
 		&__container {
 			position: relative;
 			width: 300px;
-			height: 400px;
+			min-height: 500px;
 			background-color: purple;
 			border-radius: 10px;
 			.main-window {
@@ -161,7 +176,7 @@ body {
 		&__container {
 			position: relative;
 			width: 400px;
-			height: 400px;
+			min-height: 450px;
 			background-color: purple;
 			border-radius: 10px;
 			.main__accept-register-btn {

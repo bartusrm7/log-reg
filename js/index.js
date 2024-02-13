@@ -28,7 +28,9 @@ app.post("/register", (req, res) => {
 	}
 });
 
-app.get("/login", (req, res) => {});
+app.get("/login", (req, res) => {
+	res.status(200).end()
+});
 
 app.post("/login", (req, res) => {
 	const { name, password } = req.body;

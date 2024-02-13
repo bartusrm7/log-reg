@@ -24,7 +24,7 @@ body {
 .main__container {
   position: relative;
   width: 240px;
-  min-height: 450px;
+  min-height: 500px;
   background-color: purple;
   border-radius: 10px;
 }
@@ -91,7 +91,7 @@ body {
 }
 
 .main .main-window button {
-  margin: 3em 0;
+  margin: 1.75em 0;
   padding: 0.5em 1.5em;
   background-color: white;
   text-transform: uppercase;
@@ -118,6 +118,11 @@ body {
   position: absolute;
   top: -5px;
   right: 0;
+}
+
+.main .log-reg-position-relative {
+  position: relative;
+  padding-top: 2em;
 }
 
 .main__change-window {
@@ -166,13 +171,28 @@ body {
   border-radius: 5px;
   border: none;
   outline: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
   cursor: pointer;
+}
+
+.main .go-to-login-window-btn:hover,
+.main .logout-btn:hover {
+  background-color: black;
+  color: white;
 }
 
 .main .go-to-login-window-btn hr,
 .main .logout-btn hr {
   margin: 5px auto;
   width: 50%;
+}
+
+.main .empty-input-field {
+  padding: 0 3em;
+  color: red;
+  font-weight: bold;
+  text-align: center;
 }
 
 .display-log-reg-window {
@@ -183,7 +203,7 @@ body {
   .main__container {
     position: relative;
     width: 300px;
-    height: 400px;
+    min-height: 500px;
     background-color: purple;
     border-radius: 10px;
   }
@@ -199,7 +219,7 @@ body {
   .main__container {
     position: relative;
     width: 400px;
-    height: 400px;
+    min-height: 450px;
     background-color: purple;
     border-radius: 10px;
   }

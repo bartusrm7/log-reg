@@ -6,6 +6,9 @@ const registerPasswordInput = document.querySelector(".main__register-password")
 const registerEmailInput = document.querySelector(".main__register-email");
 const acceptRegisterBtn = document.querySelector(".main__accept-register-btn");
 
+const loginDataWindow = document.querySelector(".main__login-data");
+const registerDataWindow = document.querySelector(".main__register-data");
+
 const windowLoginOrRegister = document.querySelectorAll(".main__window-label");
 const loginWindow = document.querySelector(".login-label");
 const registerWindow = document.querySelector(".register-label");
@@ -15,11 +18,18 @@ const afterLoginAccountWindow = document.querySelector(".main__after-login-box")
 const afterRegisterAccountWindow = document.querySelector(".main__after-register-box");
 const loginNameAccountAfterLog = document.querySelector(".main__after-login-name-account");
 const registerNameAccountAfterReg = document.querySelectorAll(".main__after-register-name-account");
+const afterLoginFieldDiscription = document.querySelector(".main__after-login-discription");
+const afterLoginFieldDiscriptionERROR = document.querySelector(".main__after-login-discription-error");
 const afterRegisterFieldDiscription = document.querySelector(".main__after-register-discription");
+const afterRegisterFieldDiscriptionERROR = document.querySelector(".main__after-register-discription-error");
 const goToLoginWindowBtn = document.querySelector(".go-to-login-window-btn");
 
 const loginUserWindow = document.querySelector(".main__login-user");
 const logOutBtn = document.querySelector(".logout-btn");
+
+const emptyInputField = document.createElement("p");
+emptyInputField.classList.add("empty-input-field");
+emptyInputField.textContent = "COMPLETE THE USER DATA!";
 
 const changeLoginOrRegisterWindow = () => {
 	changeLoginOrRegisterBtn.forEach(change => {
@@ -32,63 +42,91 @@ const changeLoginOrRegisterWindow = () => {
 };
 changeLoginOrRegisterWindow();
 
-const loginUser = () => {
-	acceptLoginBtn.addEventListener("click", () => {
-		const loginData = {
+const loginUser = async () => {
+	acceptLoginBtn.addEventListener("click", async () => {
+		const userData = {
 			name: loginNameInput.value,
 			password: loginPasswordInput.value,
+			loginTime: new Date(),
 		};
-		fetch("http://127.0.0.1:7777/login", {
-			method: "POST",
-			body: JSON.stringify(loginData),
-			headers: {
-				"Content-type": "application/json",
-			},
-		});
-		loginWindow.classList.add("display-log-reg-window");
-		afterLoginAccountWindow.classList.remove("display-log-reg-window");
+		try {
+			const res = await fetch("http://127.0.0.1:7777/login", {
+				method: "POST",
+				body: JSON.stringify(userData),
+				headers: {
+					"Content-type": "application/json",
+				},
+			});
+			registerNameAccountAfterReg.forEach(register => {
+				if (res.status === 401) {
+					afterLoginFieldDiscription.classList.add("display-log-reg-window");
+					afterLoginFieldDiscriptionERROR.classList.remove("display-log-reg-window");
+					register.textContent = userData.name;
+				} else if (res.status === 200) {
+					afterLoginFieldDiscription.classList.remove("display-log-reg-window");
+					afterLoginFieldDiscriptionERROR.classList.add("display-log-reg-window");
+					register.textContent = userData.name;
+				}
+			});
+		} catch (error) {
+			console.error("Error during login:", error);
+		}
+		if (loginNameInput.value === "" || loginPasswordInput.value === "") {
+			loginDataWindow.appendChild(emptyInputField);
+		} else {
+			loginWindow.classList.add("display-log-reg-window");
+			afterLoginAccountWindow.classList.remove("display-log-reg-window");
+		}
+		loginNameInput.value = "";
+		loginPasswordInput.value = "";
 	});
-	loginNameInput.value = "";
-	loginPasswordInput.value = "";
 };
 loginUser();
 
-const logoutAfterLoginUser = () => {
-	logOutBtn.addEventListener("click");
-};
+// const logoutAfterLoginUser = () => {
+// };
+// logoutAfterLoginUser();
 
-const registerAccount = () => {
-	acceptRegisterBtn.addEventListener("click", () => {
+const registerAccount = async () => {
+	acceptRegisterBtn.addEventListener("click", async () => {
 		const userData = {
 			name: registerNameInput.value,
 			password: registerPasswordInput.value,
 			email: registerEmailInput.value,
+			registerTime: new Date(),
 		};
-		registerNameAccountAfterReg.forEach(register => {
-			register.textContent = userData.name;
-		});
-
-		fetch("http://127.0.0.1:7777/register", {
-			method: "POST",
-			body: JSON.stringify(userData),
-			headers: {
-				"Content-type": "application/json",
-			},
-		}).then(res => {
-			if (res.status === 400) {
-				afterRegisterFieldDiscription.textContent = `Sorry, the user ${userData.name} is already existing! Try again!`;
-			} else if (res.status === 200) {
-				afterRegisterFieldDiscription.textContent = `Thank you ${userData.name} for register your account! Now you can log
-		below!`;
-			}
-		});
+		try {
+			const res = await fetch("http://127.0.0.1:7777/register", {
+				method: "POST",
+				body: JSON.stringify(userData),
+				headers: {
+					"Content-type": "application/json",
+				},
+			});
+			registerNameAccountAfterReg.forEach(register => {
+				if (res.status === 400) {
+					afterRegisterFieldDiscription.classList.add("display-log-reg-window");
+					afterRegisterFieldDiscriptionERROR.classList.remove("display-log-reg-window");
+					register.textContent = userData.name;
+				} else if (res.status === 200) {
+					afterRegisterFieldDiscription.classList.remove("display-log-reg-window");
+					afterRegisterFieldDiscriptionERROR.classList.add("display-log-reg-window");
+					register.textContent = userData.name;
+				}
+			});
+		} catch (error) {
+			console.log("Error during register:", error);
+		}
+		if (registerNameInput.value === "" || registerPasswordInput.value === "" || registerEmailInput.value === "") {
+			registerDataWindow.appendChild(emptyInputField);
+		} else {
+			registerWindow.classList.add("display-log-reg-window");
+			afterRegisterAccountWindow.classList.remove("display-log-reg-window");
+		}
 
 		registerNameInput.value = "";
 		registerPasswordInput.value = "";
 		registerEmailInput.value = "";
-
-		registerWindow.classList.add("display-log-reg-window");
-		afterRegisterAccountWindow.classList.remove("display-log-reg-window");
 	});
 };
 registerAccount();
