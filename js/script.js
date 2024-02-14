@@ -50,7 +50,7 @@ const loginUser = async () => {
 			loginTime: new Date(),
 		};
 		try {
-			const res = await fetch("https://bartusrm7.github.io/log-reg/logidasdas", {
+			const res = await fetch("https://bartusrm7.github.io/log-reg/login", {
 				method: "POST",
 				body: JSON.stringify(userData),
 				headers: {
