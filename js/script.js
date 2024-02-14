@@ -130,7 +130,7 @@ const registerAccount = async () => {
 			registerNameInput.value = "";
 			registerPasswordInput.value = "";
 			registerEmailInput.value = "";
-			registerDataWindow.removeChild(emptyInputField);
+			// registerDataWindow.removeChild(emptyInputField);
 		}
 	});
 };
