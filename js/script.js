@@ -72,13 +72,13 @@ const loginUser = async () => {
 			console.error("Error during login:", error);
 		}
 		if (loginNameInput.value === "" || loginPasswordInput.value === "") {
-			loginDataWindow.appendChild(emptyInputField);
+			loginDataWindow.append(emptyInputField);
 		} else {
 			loginWindow.classList.add("display-log-reg-window");
 			afterLoginAccountWindow.classList.remove("display-log-reg-window");
 			loginNameInput.value = "";
 			loginPasswordInput.value = "";
-			loginDataWindow.removeChild(emptyInputField);
+			loginDataWindow.remove(emptyInputField);
 		}
 	});
 };
@@ -123,14 +123,14 @@ const registerAccount = async () => {
 			console.log("Error during register:", error);
 		}
 		if (registerNameInput.value === "" || registerPasswordInput.value === "" || registerEmailInput.value === "") {
-			registerDataWindow.appendChild(emptyInputField);
+			registerDataWindow.append(emptyInputField);
 		} else {
 			registerWindow.classList.add("display-log-reg-window");
 			afterRegisterAccountWindow.classList.remove("display-log-reg-window");
 			registerNameInput.value = "";
 			registerPasswordInput.value = "";
 			registerEmailInput.value = "";
-			// registerDataWindow.removeChild(emptyInputField);
+			registerDataWindow.remove(emptyInputField);
 		}
 	});
 };
