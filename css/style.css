@@ -164,7 +164,8 @@ body {
 }
 
 .main .go-to-login-window-btn,
-.main .logout-btn {
+.main .logout-btn,
+.main .shrink-btn {
   padding: 0.5em 2.5em;
   text-transform: uppercase;
   font-weight: bold;
@@ -177,13 +178,15 @@ body {
 }
 
 .main .go-to-login-window-btn:hover,
-.main .logout-btn:hover {
+.main .logout-btn:hover,
+.main .shrink-btn:hover {
   background-color: black;
   color: white;
 }
 
 .main .go-to-login-window-btn hr,
-.main .logout-btn hr {
+.main .logout-btn hr,
+.main .shrink-btn hr {
   margin: 5px auto;
   width: 50%;
 }

@@ -76,16 +76,21 @@ const loginUser = async () => {
 		} else {
 			loginWindow.classList.add("display-log-reg-window");
 			afterLoginAccountWindow.classList.remove("display-log-reg-window");
+			loginNameInput.value = "";
+			loginPasswordInput.value = "";
+			loginDataWindow.removeChild(emptyInputField);
 		}
-		loginNameInput.value = "";
-		loginPasswordInput.value = "";
 	});
 };
 loginUser();
 
-// const logoutAfterLoginUser = () => {
-// };
-// logoutAfterLoginUser();
+const logoutAfterLoginUser = () => {
+	logOutBtn.addEventListener("click", () => {
+		loginWindow.classList.remove("display-log-reg-window");
+		afterLoginAccountWindow.classList.add("display-log-reg-window");
+	});
+};
+logoutAfterLoginUser();
 
 const registerAccount = async () => {
 	acceptRegisterBtn.addEventListener("click", async () => {
@@ -122,11 +127,11 @@ const registerAccount = async () => {
 		} else {
 			registerWindow.classList.add("display-log-reg-window");
 			afterRegisterAccountWindow.classList.remove("display-log-reg-window");
+			registerNameInput.value = "";
+			registerPasswordInput.value = "";
+			registerEmailInput.value = "";
+			registerDataWindow.removeChild(emptyInputField);
 		}
-
-		registerNameInput.value = "";
-		registerPasswordInput.value = "";
-		registerEmailInput.value = "";
 	});
 };
 registerAccount();
