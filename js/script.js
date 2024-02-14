@@ -78,7 +78,7 @@ const loginUser = async () => {
 			afterLoginAccountWindow.classList.remove("display-log-reg-window");
 			loginNameInput.value = "";
 			loginPasswordInput.value = "";
-			loginDataWindow.remove(emptyInputField);
+			// loginDataWindow.remove(emptyInputField);
 		}
 	});
 };
@@ -130,7 +130,7 @@ const registerAccount = async () => {
 			registerNameInput.value = "";
 			registerPasswordInput.value = "";
 			registerEmailInput.value = "";
-			registerDataWindow.remove(emptyInputField);
+			// registerDataWindow.remove(emptyInputField);
 		}
 	});
 };
