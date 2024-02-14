@@ -50,7 +50,7 @@ const loginUser = async () => {
 			loginTime: new Date(),
 		};
 		try {
-			const res = await fetch("http://127.0.0.1:7777/login", {
+			const res = await fetch("https://bartusrm7.github.io/log-reg/login", {
 				method: "POST",
 				body: JSON.stringify(userData),
 				headers: {
@@ -101,7 +101,7 @@ const registerAccount = async () => {
 			registerTime: new Date(),
 		};
 		try {
-			const res = await fetch("http://127.0.0.1:7777/register", {
+			const res = await fetch("https://bartusrm7.github.io/log-reg/register", {
 				method: "POST",
 				body: JSON.stringify(userData),
 				headers: {
