@@ -10,11 +10,11 @@ app.get("/", (req, res) => {
 	res.status(200).end();
 });
 
-app.get("/register", (req, res) => {
+app.get("https://bartusrm7.github.io/log-reg/register", (req, res) => {
 	res.status(200).json({ userData });
 });
 
-app.post("/register", (req, res) => {
+app.post("https://bartusrm7.github.io/log-reg/register", (req, res) => {
 	const { name, email } = req.body;
 	const userExist = userData.map(user => user.name === name || user.email === email).includes(true);
 
@@ -28,11 +28,11 @@ app.post("/register", (req, res) => {
 	}
 });
 
-app.get("/login", (req, res) => {
+app.get("https://bartusrm7.github.io/log-reg/login", (req, res) => {
 	res.status(200).end()
 });
 
-app.post("/login", (req, res) => {
+app.post("https://bartusrm7.github.io/log-reg/login", (req, res) => {
 	const { name, password } = req.body;
 	const user = userData.map(user => user.name === name && user.password === password).includes(true);
 
@@ -46,5 +46,5 @@ app.post("/login", (req, res) => {
 });
 
 app.listen(7777, () => {
-	console.log(`The app opened at port ${"http://127.0.0.1:7777/"}`);
+	console.log(`The app opened at port ${"https://bartusrm7.github.io/log-reg/"}`);
 });
